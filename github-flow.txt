@@ -1,0 +1,40 @@
+workflow:
+Workflows are the way people get work done, and can be illustrated as series of steps that need to be completed sequentially in a diagram or checklist.
+
+for our RAX project:
+we track our bugs/features in QTS, code repository is the IBM clear case. review codes through..., after review, we check in codes into clear case manually.NO automatic testing process.
+
+for our DPAgent project:
+we trace bugs/features in bugzellia, we use our company github as the code repository. we use gerry for code review when we push codes into some specific remote branches, we can configure to run the automatically test.
+
+what is the workflow of datahub-flowagent workflow? basically we are following the github flow. but recently we also need buezellia to tracking the issues. previoulys, all the things we need to do is in github.
+
+code repository is github.
+issues are tracking by github/issues
+code review in pull reqeust.
+infrabox test run at: 1, push to your branch if you configured your infrabox project.
+2, open a PR. 3, push your new commits into PR.
+
+
+by the way, besides github flow, there are git flow and gitlab flow, they are other types of workflow, different, might be more complicated.
+
+first you need to fork your project. why? because it is not allowed anyone could push commits into origin project.
+anyone want to push changes need to push to your own branch in your fork project. those people have the write permision can push commits directly into origin proejct. they are project owner, project archetect..
+
+git clone your fork project or add remote for your fork project.
+
+so it is better your dont' use your master branch, but create another branch with a descriptive/meaningfull name,say, "odata-consumer-update".
+
+1, git add, git commit -m "commmit message"
+2, git push your-remote your-branch:remote-branch
+3, create pull request, base is origin/master, compare is your-fork-project/your-branch
+4, review.. 
+5, git add, git commit -m "commite message2", git push your-remote your-branch:remote-branch
+6, sometimes origin master have new commits. you need to:
+git fetch origin
+git merge origin/master
+git commit "message"
+git push your-remote your-branch:remote-branch.
+7, review passed, project owner or some collabetors have the write permission could do the merge.
+
+close issue.
