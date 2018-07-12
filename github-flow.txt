@@ -1,40 +1,47 @@
 workflow:
-Workflows are the way people get work done, and can be illustrated as series of steps that need to be completed sequentially in a diagram or checklist.
+Workflow is the way people get work done, and can be illustrated as series of steps that need to be completed sequentially in a diagram or checklist.
 
 for our RAX project:
-we track our bugs/features in QTS, code repository is the IBM clear case. review codes through..., after review, we check in codes into clear case manually.NO automatic testing process.
+we track our bugs/features in QTS, code repository is the IBM clear case. review codes through..., after review, we check in codes into clear case manually. NO automation test?
 
 for our DPAgent project:
-we trace bugs/features in bugzellia, we use our company github as the code repository. we use gerry for code review when we push codes into some specific remote branches, we can configure to run the automatically test.
+we trace bugs/features in bugzilla, we use our company github as the code repository. we use gerrit for code review when we push codes into remote branches like refs/for/master, and each time we pushed codes, automation test runs.
 
-what is the workflow of datahub-flowagent workflow? basically we are following the github flow. but recently we also need buezellia to tracking the issues. previoulys, all the things we need to do is in github.
+for datahub-flowagent project:
+basically we are following the github flow. but now we also need bugzilla to track the issues. previoulys, all things in github only. that is the workflow many open source projects follow.
 
-code repository is github.
-issues are tracking by github/issues
-code review in pull reqeust.
-infrabox test run at: 1, push to your branch if you configured your infrabox project.
-2, open a PR. 3, push your new commits into PR.
+by the way, besides github flow, there are git flow and gitlab flow, they are other types of workflow, different process, addtional tools, might be more complicated.
 
+github/codes is code repository.
+github/issues to track issues, communication.
+git/pulls for code review in pull reqeust.
+for our flowagent project, automation infrabox test run when: 
+1, pushed to your branch if you configured your project in infrabox dashboard.
+2, created a PR.
+3, pushed your new commits into your branch in PR.
 
-by the way, besides github flow, there are git flow and gitlab flow, they are other types of workflow, different, might be more complicated.
+firstly, fork your project. why? 
+because not anyone is allowed to push commits into the branches in origin project.
+only those people who have the write permision could push commits directly into origin proejct. they are project owner, project archetect. say KB.
+you should fork your own project and push to your own branch in your fork project. and create a PR(Pull Request) to request to merge your commits into origin branches.
 
-first you need to fork your project. why? because it is not allowed anyone could push commits into origin project.
-anyone want to push changes need to push to your own branch in your fork project. those people have the write permision can push commits directly into origin proejct. they are project owner, project archetect..
+actually, there are two kinds of develop model, fork-pull model and shared model. for shared model, everyone could create branch and commit changes. obviously, it is not a proper model for a project that involves many people and even people from outside the group.
 
 git clone your fork project or add remote for your fork project.
 
-so it is better your dont' use your master branch, but create another branch with a descriptive/meaningfull name,say, "odata-consumer-update".
+and i suggest your don't push codes to your master branch, instead, you create another branch with a descriptive/meaningfull name,say, "odata-sql-consumer".
 
-1, git add, git commit -m "commmit message"
-2, git push your-remote your-branch:remote-branch
-3, create pull request, base is origin/master, compare is your-fork-project/your-branch
-4, review.. 
-5, git add, git commit -m "commite message2", git push your-remote your-branch:remote-branch
-6, sometimes origin master have new commits. you need to:
+1, git add <files>, git commit -m "commmit message".
+2, git push your-remote your-branch:remote-branch.
+3, create a pull request, base is origin/master, compare is your-fork-project/your-branch
+4, add reviewer, normally KB should be a must.
+5, if requrie change, git add, git commit -m "commite message2", git push your-remote your-branch:remote-branch
+6, sync your branch:
+sometimes origin master have new commits while you are waiting for review pass. you need to:
 git fetch origin
 git merge origin/master
-git commit "message"
 git push your-remote your-branch:remote-branch.
-7, review passed, project owner or some collabetors have the write permission could do the merge.
+7, after review passed, project owner or the collaborator who has the write permission would do the merge.
+8, you could git branch -D your-branch-name and delete the branch in remote repo.
 
 close issue.
