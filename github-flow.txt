@@ -2,7 +2,7 @@ workflow:
 Workflow is the way people get work done, and can be illustrated as series of steps that need to be completed sequentially in a diagram or checklist.
 
 for our RAX project:
-we track our bugs/features in QTS, code repository is the IBM clear case. review codes through..., after review, we check in codes into clear case manually. NO automation test?
+we track our bugs/features in QTS, code repository is the IBM clear case. review codes in CCRC, after review, we check in codes into clear case manually. NO automation test?
 
 for our DPAgent project:
 we trace bugs/features in bugzilla, we use our company github as the code repository. we use gerrit for code review when we push codes into remote branches like refs/for/master, and each time we pushed codes, automation test runs.
